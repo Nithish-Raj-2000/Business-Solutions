@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stackly Business Solutions admin dashboard — manage users, projects, orders, and analytics.">
+  <title>Admin Dashboard — Stackly Business Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar" id="dashboardSidebar">
+      <div class="dashboard-sidebar__header">
+        <a href="index.html" class="logo">
+          <div class="logo__icon"><i class="fas fa-layer-group"></i></div>
+          <div class="logo__text">
+            <span class="logo__name">Stackly</span>
+            <span class="logo__tagline">Admin Panel</span>
+          </div>
+        </a>
+      </div>
+      <nav class="dashboard-sidebar__nav" aria-label="Admin navigation">
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link active" data-panel="panel-dashboard"><i class="fas fa-home"></i> Dashboard</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-analytics"><i class="fas fa-chart-line"></i> Analytics</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-users"><i class="fas fa-users"></i> Users</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-services"><i class="fas fa-cogs"></i> Services</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-projects"><i class="fas fa-folder-open"></i> Projects</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-clients"><i class="fas fa-building"></i> Clients</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-orders"><i class="fas fa-shopping-cart"></i> Orders</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-reports"><i class="fas fa-file-alt"></i> Reports</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-messages"><i class="fas fa-envelope"></i> Messages</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-settings"><i class="fas fa-gear"></i> Settings</a>
+        </div>
+      </nav>
+      <div style="padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);">
+        <a href="#" class="dashboard-nav__link" data-logout style="color: rgba(255,255,255,0.7);">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="dashboard-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="dashboard-topbar__email" aria-label="Signed in email" data-user-email>
+            admin@stackly.com
+          </div>
+        </div>
+        <div class="dashboard-topbar__actions">
+          <button class="dashboard-topbar__notification" aria-label="Notifications">
+            <i class="fas fa-bell"></i>
+            <span class="badge-count">5</span>
+          </button>
+          <div class="dashboard-topbar__profile">
+            <div class="dashboard-topbar__avatar" data-user-avatar aria-hidden="true">A</div>
+            <div>
+              <div style="font-size: var(--fs-sm); font-weight: 600;" data-user-name>Admin</div>
+              <div style="font-size: var(--fs-xs); color: var(--color-text-muted);">Administrator</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="dashboard-content__header">
+          <h1 class="dashboard-content__title">Dashboard</h1>
+          <p class="dashboard-content__subtitle">Welcome back! Here's what's happening with your business today.</p>
+        </div>
+
+        <!-- Dashboard Panel -->
+        <div class="dashboard-panel active" id="panel-dashboard">
+          <div class="dashboard-stats">
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--blue"><i class="fas fa-dollar-sign"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">$284,592</div>
+                <div class="dashboard-stat-card__label">Total Revenue</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--up"><i class="fas fa-arrow-up"></i> 12.5% vs last month</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--cyan"><i class="fas fa-users"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">1,248</div>
+                <div class="dashboard-stat-card__label">Active Clients</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--up"><i class="fas fa-arrow-up"></i> 8.2% vs last month</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--green"><i class="fas fa-folder-open"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">86</div>
+                <div class="dashboard-stat-card__label">Active Projects</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--down"><i class="fas fa-arrow-down"></i> 3.1% vs last month</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--purple"><i class="fas fa-shopping-cart"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">24</div>
+                <div class="dashboard-stat-card__label">Pending Orders</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--up"><i class="fas fa-arrow-up"></i> 5.7% vs last month</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="card dashboard-card">
+              <div class="dashboard-card__header">
+                <h2 class="dashboard-card__title">Revenue Overview</h2>
+                <select class="form-select" style="width: auto; padding: 0.5rem 1rem; font-size: var(--fs-xs);">
+                  <option>Last 12 months</option>
+                  <option>Last 6 months</option>
+                  <option>Last 30 days</option>
+                </select>
+              </div>
+              <div class="chart-container" aria-label="Monthly revenue chart">
+                <div class="chart-bar" data-height="45" title="Jan: $18.2k"></div>
+                <div class="chart-bar" data-height="52" title="Feb: $21.0k"></div>
+                <div class="chart-bar" data-height="48" title="Mar: $19.4k"></div>
+                <div class="chart-bar" data-height="61" title="Apr: $24.7k"></div>
+                <div class="chart-bar" data-height="55" title="May: $22.3k"></div>
+                <div class="chart-bar" data-height="70" title="Jun: $28.4k"></div>
+                <div class="chart-bar" data-height="65" title="Jul: $26.5k"></div>
+                <div class="chart-bar" data-height="78" title="Aug: $31.8k"></div>
+                <div class="chart-bar" data-height="72" title="Sep: $29.4k"></div>
+                <div class="chart-bar" data-height="85" title="Oct: $34.7k"></div>
+                <div class="chart-bar" data-height="80" title="Nov: $32.6k"></div>
+                <div class="chart-bar" data-height="92" title="Dec: $37.5k"></div>
+              </div>
+            </div>
+
+            <div class="card dashboard-card">
+              <div class="dashboard-card__header">
+                <h2 class="dashboard-card__title">Recent Activity</h2>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(16,185,129,0.1); color: var(--color-success);"><i class="fas fa-check"></i></div>
+                <div>
+                  <div class="activity-item__text"><strong>Order #ORD-2847</strong> completed by Meridian Corp</div>
+                  <div class="activity-item__time">12 minutes ago</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(26,35,126,0.1); color: var(--color-primary);"><i class="fas fa-user-plus"></i></div>
+                <div>
+                  <div class="activity-item__text">New client <strong>Vertex Dynamics</strong> registered</div>
+                  <div class="activity-item__time">45 minutes ago</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(245,158,11,0.1); color: var(--color-warning);"><i class="fas fa-exclamation"></i></div>
+                <div>
+                  <div class="activity-item__text">Project <strong>Cloud Migration Phase 2</strong> deadline in 3 days</div>
+                  <div class="activity-item__time">1 hour ago</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(0,188,212,0.1); color: var(--color-secondary);"><i class="fas fa-file-invoice"></i></div>
+                <div>
+                  <div class="activity-item__text">Invoice <strong>INV-2024-0892</strong> sent to Apex Industries</div>
+                  <div class="activity-item__time">2 hours ago</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(124,77,255,0.1); color: var(--color-accent);"><i class="fas fa-comment"></i></div>
+                <div>
+                  <div class="activity-item__text"><strong>Sarah Chen</strong> replied to support ticket #TK-1042</div>
+                  <div class="activity-item__time">3 hours ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Recent Orders</h2>
+              <a href="#" class="btn btn--outline btn--sm" data-panel="panel-orders">View All</a>
+            </div>
+            <div style="overflow-x: auto;">
+              <table class="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Client</th>
+                    <th>Service</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#ORD-2847</strong></td>
+                    <td>Meridian Corp</td>
+                    <td>Cloud Infrastructure</td>
+                    <td>$12,450.00</td>
+                    <td>Jul 1, 2026</td>
+                    <td><span class="status-badge status-badge--active">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#ORD-2846</strong></td>
+                    <td>Apex Industries</td>
+                    <td>ERP Integration</td>
+                    <td>$28,900.00</td>
+                    <td>Jun 30, 2026</td>
+                    <td><span class="status-badge status-badge--pending">In Progress</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#ORD-2845</strong></td>
+                    <td>Vertex Dynamics</td>
+                    <td>Cyber Security Audit</td>
+                    <td>$8,750.00</td>
+                    <td>Jun 29, 2026</td>
+                    <td><span class="status-badge status-badge--active">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#ORD-2844</strong></td>
+                    <td>NovaTech Solutions</td>
+                    <td>Data Analytics Platform</td>
+                    <td>$45,200.00</td>
+                    <td>Jun 28, 2026</td>
+                    <td><span class="status-badge status-badge--pending">Pending</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#ORD-2843</strong></td>
+                    <td>Greenfield Logistics</td>
+                    <td>Mobile App Development</td>
+                    <td>$32,100.00</td>
+                    <td>Jun 27, 2026</td>
+                    <td><span class="status-badge status-badge--inactive">Cancelled</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics Panel -->
+        <div class="dashboard-panel" id="panel-analytics">
+          <div class="dashboard-stats">
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--blue"><i class="fas fa-eye"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">48,291</div>
+                <div class="dashboard-stat-card__label">Page Views</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--up"><i class="fas fa-arrow-up"></i> 18.3%</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--cyan"><i class="fas fa-mouse-pointer"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">3.42%</div>
+                <div class="dashboard-stat-card__label">Conversion Rate</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--up"><i class="fas fa-arrow-up"></i> 0.8%</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--green"><i class="fas fa-clock"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">4m 32s</div>
+                <div class="dashboard-stat-card__label">Avg. Session</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--up"><i class="fas fa-arrow-up"></i> 22s</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--purple"><i class="fas fa-chart-pie"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">32.1%</div>
+                <div class="dashboard-stat-card__label">Bounce Rate</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--down"><i class="fas fa-arrow-down"></i> 4.2%</div>
+              </div>
+            </div>
+          </div>
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Traffic by Source</h2>
+            </div>
+            <div class="chart-container" style="height: 220px;">
+              <div class="chart-bar" data-height="88" title="Organic: 38%"></div>
+              <div class="chart-bar" data-height="62" title="Direct: 27%"></div>
+              <div class="chart-bar" data-height="45" title="Referral: 19%"></div>
+              <div class="chart-bar" data-height="35" title="Social: 15%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Users Panel -->
+        <div class="dashboard-panel" id="panel-users">
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">User Management</h2>
+              <button class="btn btn--primary btn--sm"><i class="fas fa-plus"></i> Add User</button>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Last Login</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Sarah Chen</strong></td>
+                  <td>sarah.chen@stackly.com</td>
+                  <td>Super Admin</td>
+                  <td>Today, 9:42 AM</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Michael Torres</strong></td>
+                  <td>m.torres@stackly.com</td>
+                  <td>Project Manager</td>
+                  <td>Today, 8:15 AM</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Emily Watson</strong></td>
+                  <td>e.watson@stackly.com</td>
+                  <td>Support Lead</td>
+                  <td>Yesterday, 5:30 PM</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>James Park</strong></td>
+                  <td>j.park@stackly.com</td>
+                  <td>Developer</td>
+                  <td>Jun 30, 2026</td>
+                  <td><span class="status-badge status-badge--pending">Away</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Lisa Nguyen</strong></td>
+                  <td>l.nguyen@stackly.com</td>
+                  <td>Analyst</td>
+                  <td>Jun 28, 2026</td>
+                  <td><span class="status-badge status-badge--inactive">Inactive</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Services Panel -->
+        <div class="dashboard-panel" id="panel-services">
+          <div class="dashboard-stats" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--blue"><i class="fas fa-cloud"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">12</div>
+                <div class="dashboard-stat-card__label">Cloud Services</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--cyan"><i class="fas fa-shield-halved"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">8</div>
+                <div class="dashboard-stat-card__label">Security Packages</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--green"><i class="fas fa-code"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">15</div>
+                <div class="dashboard-stat-card__label">Dev Services</div>
+              </div>
+            </div>
+          </div>
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Service Catalog</h2>
+              <button class="btn btn--primary btn--sm"><i class="fas fa-plus"></i> New Service</button>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Category</th>
+                  <th>Price From</th>
+                  <th>Active Subscriptions</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Cloud Infrastructure Setup</strong></td>
+                  <td>Cloud Solutions</td>
+                  <td>$4,500/mo</td>
+                  <td>142</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Managed Cyber Security</strong></td>
+                  <td>Security</td>
+                  <td>$2,800/mo</td>
+                  <td>98</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>ERP Implementation</strong></td>
+                  <td>Consulting</td>
+                  <td>$15,000</td>
+                  <td>34</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>AI Analytics Suite</strong></td>
+                  <td>Data &amp; AI</td>
+                  <td>$6,200/mo</td>
+                  <td>56</td>
+                  <td><span class="status-badge status-badge--pending">Beta</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Projects Panel -->
+        <div class="dashboard-panel" id="panel-projects">
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Active Projects</h2>
+              <button class="btn btn--primary btn--sm"><i class="fas fa-plus"></i> New Project</button>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Client</th>
+                  <th>Manager</th>
+                  <th>Progress</th>
+                  <th>Deadline</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Cloud Migration Phase 2</strong></td>
+                  <td>Meridian Corp</td>
+                  <td>Michael Torres</td>
+                  <td>78%</td>
+                  <td>Jul 5, 2026</td>
+                  <td><span class="status-badge status-badge--pending">In Progress</span></td>
+                </tr>
+                <tr>
+                  <td><strong>CRM Platform Rollout</strong></td>
+                  <td>Apex Industries</td>
+                  <td>Sarah Chen</td>
+                  <td>45%</td>
+                  <td>Aug 15, 2026</td>
+                  <td><span class="status-badge status-badge--pending">In Progress</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Security Compliance Audit</strong></td>
+                  <td>Vertex Dynamics</td>
+                  <td>Emily Watson</td>
+                  <td>92%</td>
+                  <td>Jul 10, 2026</td>
+                  <td><span class="status-badge status-badge--active">On Track</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Mobile App v3.0</strong></td>
+                  <td>NovaTech Solutions</td>
+                  <td>James Park</td>
+                  <td>23%</td>
+                  <td>Sep 30, 2026</td>
+                  <td><span class="status-badge status-badge--pending">Planning</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Clients Panel -->
+        <div class="dashboard-panel" id="panel-clients">
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Client Directory</h2>
+              <button class="btn btn--primary btn--sm"><i class="fas fa-plus"></i> Add Client</button>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>Contact</th>
+                  <th>Industry</th>
+                  <th>Since</th>
+                  <th>LTV</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Meridian Corp</strong></td>
+                  <td>David Klein</td>
+                  <td>Finance</td>
+                  <td>Jan 2022</td>
+                  <td>$186,400</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Apex Industries</strong></td>
+                  <td>Rachel Foster</td>
+                  <td>Manufacturing</td>
+                  <td>Mar 2021</td>
+                  <td>$342,800</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Vertex Dynamics</strong></td>
+                  <td>Tom Bradley</td>
+                  <td>Technology</td>
+                  <td>Jun 2026</td>
+                  <td>$12,500</td>
+                  <td><span class="status-badge status-badge--pending">Onboarding</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Greenfield Logistics</strong></td>
+                  <td>Anna Mueller</td>
+                  <td>Logistics</td>
+                  <td>Sep 2020</td>
+                  <td>$98,200</td>
+                  <td><span class="status-badge status-badge--inactive">Churned</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Orders Panel -->
+        <div class="dashboard-panel" id="panel-orders">
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">All Orders</h2>
+              <div style="display: flex; gap: 0.5rem;">
+                <select class="form-select" style="width: auto; padding: 0.5rem 1rem; font-size: var(--fs-xs);">
+                  <option>All Statuses</option>
+                  <option>Completed</option>
+                  <option>Pending</option>
+                  <option>Cancelled</option>
+                </select>
+              </div>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Client</th>
+                  <th>Service</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>#ORD-2847</strong></td>
+                  <td>Meridian Corp</td>
+                  <td>Cloud Infrastructure</td>
+                  <td>$12,450.00</td>
+                  <td>Jul 1, 2026</td>
+                  <td><span class="status-badge status-badge--active">Completed</span></td>
+                </tr>
+                <tr>
+                  <td><strong>#ORD-2846</strong></td>
+                  <td>Apex Industries</td>
+                  <td>ERP Integration</td>
+                  <td>$28,900.00</td>
+                  <td>Jun 30, 2026</td>
+                  <td><span class="status-badge status-badge--pending">In Progress</span></td>
+                </tr>
+                <tr>
+                  <td><strong>#ORD-2845</strong></td>
+                  <td>Vertex Dynamics</td>
+                  <td>Cyber Security Audit</td>
+                  <td>$8,750.00</td>
+                  <td>Jun 29, 2026</td>
+                  <td><span class="status-badge status-badge--active">Completed</span></td>
+                </tr>
+                <tr>
+                  <td><strong>#ORD-2844</strong></td>
+                  <td>NovaTech Solutions</td>
+                  <td>Data Analytics Platform</td>
+                  <td>$45,200.00</td>
+                  <td>Jun 28, 2026</td>
+                  <td><span class="status-badge status-badge--pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td><strong>#ORD-2842</strong></td>
+                  <td>Pinnacle Health</td>
+                  <td>HIPAA Compliance Suite</td>
+                  <td>$19,600.00</td>
+                  <td>Jun 26, 2026</td>
+                  <td><span class="status-badge status-badge--active">Completed</span></td>
+                </tr>
+                <tr>
+                  <td><strong>#ORD-2841</strong></td>
+                  <td>Summit Retail Group</td>
+                  <td>E-commerce Platform</td>
+                  <td>$52,300.00</td>
+                  <td>Jun 25, 2026</td>
+                  <td><span class="status-badge status-badge--pending">In Progress</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Reports Panel -->
+        <div class="dashboard-panel" id="panel-reports">
+          <div class="dashboard-grid">
+            <div class="card dashboard-card">
+              <div class="dashboard-card__header">
+                <h2 class="dashboard-card__title">Monthly Revenue Report</h2>
+                <button class="btn btn--outline btn--sm"><i class="fas fa-download"></i> Export PDF</button>
+              </div>
+              <p style="color: var(--color-text-muted); font-size: var(--fs-sm); margin-bottom: 1rem;">Generated: July 1, 2026 &mdash; Total: $284,592 (+12.5% MoM)</p>
+              <table class="dashboard-table">
+                <thead>
+                  <tr><th>Category</th><th>Revenue</th><th>Share</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Cloud Solutions</td><td>$98,400</td><td>34.6%</td></tr>
+                  <tr><td>Consulting</td><td>$76,200</td><td>26.8%</td></tr>
+                  <tr><td>Software Dev</td><td>$62,800</td><td>22.1%</td></tr>
+                  <tr><td>Security</td><td>$47,192</td><td>16.5%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card dashboard-card">
+              <div class="dashboard-card__header">
+                <h2 class="dashboard-card__title">Available Reports</h2>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(26,35,126,0.1); color: var(--color-primary);"><i class="fas fa-file-pdf"></i></div>
+                <div>
+                  <div class="activity-item__text"><strong>Q2 2026 Financial Summary</strong></div>
+                  <div class="activity-item__time">PDF &mdash; 2.4 MB</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(0,188,212,0.1); color: var(--color-secondary);"><i class="fas fa-file-excel"></i></div>
+                <div>
+                  <div class="activity-item__text"><strong>Client Retention Analysis</strong></div>
+                  <div class="activity-item__time">XLSX &mdash; 890 KB</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(16,185,129,0.1); color: var(--color-success);"><i class="fas fa-file-pdf"></i></div>
+                <div>
+                  <div class="activity-item__text"><strong>Project Delivery Report — June</strong></div>
+                  <div class="activity-item__time">PDF &mdash; 1.1 MB</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Messages Panel -->
+        <div class="dashboard-panel" id="panel-messages">
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Inbox</h2>
+              <span class="status-badge status-badge--pending">5 unread</span>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>From</th>
+                  <th>Subject</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>David Klein</strong></td>
+                  <td>Re: Cloud Migration timeline update</td>
+                  <td>Today, 10:22 AM</td>
+                  <td><span class="status-badge status-badge--pending">Unread</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Rachel Foster</strong></td>
+                  <td>ERP Integration — Phase 2 approval needed</td>
+                  <td>Today, 9:05 AM</td>
+                  <td><span class="status-badge status-badge--pending">Unread</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Tom Bradley</strong></td>
+                  <td>Welcome! Getting started with Stackly</td>
+                  <td>Yesterday</td>
+                  <td><span class="status-badge status-badge--active">Read</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Support System</strong></td>
+                  <td>Ticket #TK-1042 escalated to Tier 2</td>
+                  <td>Jun 30, 2026</td>
+                  <td><span class="status-badge status-badge--active">Read</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="dashboard-panel" id="panel-settings">
+          <div class="card dashboard-card" style="max-width: 640px;">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Account Settings</h2>
+            </div>
+            <form novalidate>
+              <div class="form-group">
+                <label class="form-label" for="adminName">Display Name</label>
+                <input type="text" id="adminName" class="form-input" value="Admin User">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="adminEmail">Email</label>
+                <input type="email" id="adminEmail" class="form-input" value="admin@stackly.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="adminTimezone">Timezone</label>
+                <select id="adminTimezone" class="form-select">
+                  <option>America/New_York (EST)</option>
+                  <option>America/Chicago (CST)</option>
+                  <option>America/Los_Angeles (PST)</option>
+                  <option>Europe/London (GMT)</option>
+                </select>
+              </div>
+              <label class="form-checkbox" style="margin-bottom: 1.5rem;">
+                <input type="checkbox" checked>
+                <span>Email me when new orders are placed</span>
+              </label>
+              <label class="form-checkbox" style="margin-bottom: 1.5rem;">
+                <input type="checkbox" checked>
+                <span>Send weekly analytics digest</span>
+              </label>
+              <button type="submit" class="btn btn--primary">Save Changes</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+  <script src="assets/js/animations.js"></script>
+</body>
+</html>

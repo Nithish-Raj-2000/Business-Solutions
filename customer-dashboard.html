@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stackly Business Solutions customer portal — manage services, invoices, projects, and support.">
+  <title>My Dashboard — Stackly Business Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar" id="dashboardSidebar">
+      <div class="dashboard-sidebar__header">
+        <a href="index.html" class="logo">
+          <div class="logo__icon"><i class="fas fa-layer-group"></i></div>
+          <div class="logo__text">
+            <span class="logo__name">Stackly</span>
+            <span class="logo__tagline">Customer Portal</span>
+          </div>
+        </a>
+      </div>
+      <nav class="dashboard-sidebar__nav" aria-label="Customer navigation">
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link active" data-panel="panel-profile"><i class="fas fa-user"></i> Profile</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-services"><i class="fas fa-briefcase"></i> My Services</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-invoices"><i class="fas fa-file-invoice-dollar"></i> Invoices</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-projects"><i class="fas fa-folder-open"></i> Projects</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-downloads"><i class="fas fa-download"></i> Downloads</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-messages"><i class="fas fa-envelope"></i> Messages</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-support"><i class="fas fa-headset"></i> Support</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-wishlist"><i class="fas fa-heart"></i> Wishlist</a>
+        </div>
+        <div class="dashboard-nav__item">
+          <a href="#" class="dashboard-nav__link" data-panel="panel-settings"><i class="fas fa-gear"></i> Settings</a>
+        </div>
+      </nav>
+      <div style="padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);">
+        <a href="#" class="dashboard-nav__link" data-logout style="color: rgba(255,255,255,0.7);">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="dashboard-topbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button class="dashboard-sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="dashboard-topbar__email" aria-label="Signed in email" data-user-email>
+            customer@stackly.com
+          </div>
+        </div>
+        <div class="dashboard-topbar__actions">
+          <button class="dashboard-topbar__notification" aria-label="Notifications">
+            <i class="fas fa-bell"></i>
+            <span class="badge-count">3</span>
+          </button>
+          <div class="dashboard-topbar__profile">
+            <div class="dashboard-topbar__avatar" data-user-avatar aria-hidden="true">C</div>
+            <div>
+              <div style="font-size: var(--fs-sm); font-weight: 600;" data-user-name>Customer</div>
+              <div style="font-size: var(--fs-xs); color: var(--color-text-muted);">Premium Plan</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="dashboard-content__header">
+          <h1 class="dashboard-content__title">Profile</h1>
+          <p class="dashboard-content__subtitle">Manage your account, services, and project deliverables.</p>
+        </div>
+
+        <!-- Profile Panel (default) -->
+        <div class="dashboard-panel active" id="panel-profile">
+          <div class="dashboard-stats">
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--blue"><i class="fas fa-briefcase"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">4</div>
+                <div class="dashboard-stat-card__label">Active Services</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--up"><i class="fas fa-arrow-up"></i> 1 added this month</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--cyan"><i class="fas fa-folder-open"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">2</div>
+                <div class="dashboard-stat-card__label">Open Projects</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--up"><i class="fas fa-arrow-up"></i> On schedule</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--green"><i class="fas fa-file-invoice"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">$8,450</div>
+                <div class="dashboard-stat-card__label">Outstanding Balance</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--down"><i class="fas fa-clock"></i> Due Jul 15</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--purple"><i class="fas fa-headset"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">1</div>
+                <div class="dashboard-stat-card__label">Open Tickets</div>
+                <div class="dashboard-stat-card__change dashboard-stat-card__change--up"><i class="fas fa-check"></i> Avg. response: 2h</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="card dashboard-card">
+              <div class="dashboard-card__header">
+                <h2 class="dashboard-card__title">Spending Overview</h2>
+                <select class="form-select" style="width: auto; padding: 0.5rem 1rem; font-size: var(--fs-xs);">
+                  <option>Last 6 months</option>
+                  <option>Last 12 months</option>
+                </select>
+              </div>
+              <div class="chart-container" aria-label="Monthly spending chart">
+                <div class="chart-bar" data-height="55" title="Feb"></div>
+                <div class="chart-bar" data-height="48" title="Mar"></div>
+                <div class="chart-bar" data-height="62" title="Apr"></div>
+                <div class="chart-bar" data-height="70" title="May"></div>
+                <div class="chart-bar" data-height="58" title="Jun"></div>
+                <div class="chart-bar" data-height="75" title="Jul"></div>
+              </div>
+            </div>
+
+            <div class="card dashboard-card">
+              <div class="dashboard-card__header">
+                <h2 class="dashboard-card__title">Recent Activity</h2>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(16,185,129,0.1); color: var(--color-success);"><i class="fas fa-check"></i></div>
+                <div>
+                  <div class="activity-item__text">Invoice <strong>INV-2026-0412</strong> paid — $4,200.00</div>
+                  <div class="activity-item__time">Yesterday, 3:15 PM</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(26,35,126,0.1); color: var(--color-primary);"><i class="fas fa-file"></i></div>
+                <div>
+                  <div class="activity-item__text">New deliverable uploaded: <strong>Q2 Analytics Report</strong></div>
+                  <div class="activity-item__time">Jun 30, 2026</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(0,188,212,0.1); color: var(--color-secondary);"><i class="fas fa-comment"></i></div>
+                <div>
+                  <div class="activity-item__text">Michael Torres commented on <strong>CRM Rollout</strong></div>
+                  <div class="activity-item__time">Jun 29, 2026</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-item__icon" style="background: rgba(245,158,11,0.1); color: var(--color-warning);"><i class="fas fa-bell"></i></div>
+                <div>
+                  <div class="activity-item__text">Renewal reminder: <strong>Cloud Hosting</strong> due Aug 1</div>
+                  <div class="activity-item__time">Jun 28, 2026</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Account Overview</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+              <div>
+                <p style="font-size: var(--fs-sm); color: var(--color-text-muted); margin-bottom: 0.25rem;">Company</p>
+                <p style="font-weight: 600; margin-bottom: 1rem;">Meridian Corp</p>
+                <p style="font-size: var(--fs-sm); color: var(--color-text-muted); margin-bottom: 0.25rem;">Account Manager</p>
+                <p style="font-weight: 600; margin-bottom: 1rem;">Michael Torres</p>
+                <p style="font-size: var(--fs-sm); color: var(--color-text-muted); margin-bottom: 0.25rem;">Plan</p>
+                <p style="font-weight: 600;">Premium — $2,499/mo</p>
+              </div>
+              <div>
+                <p style="font-size: var(--fs-sm); color: var(--color-text-muted); margin-bottom: 0.25rem;">Member Since</p>
+                <p style="font-weight: 600; margin-bottom: 1rem;">January 2022</p>
+                <p style="font-size: var(--fs-sm); color: var(--color-text-muted); margin-bottom: 0.25rem;">Next Billing Date</p>
+                <p style="font-weight: 600; margin-bottom: 1rem;">August 1, 2026</p>
+                <p style="font-size: var(--fs-sm); color: var(--color-text-muted); margin-bottom: 0.25rem;">Support Tier</p>
+                <p style="font-weight: 600;">Priority — 2hr SLA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- My Services Panel -->
+        <div class="dashboard-panel" id="panel-services">
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Subscribed Services</h2>
+              <a href="services.html" class="btn btn--outline btn--sm">Browse More</a>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Plan</th>
+                  <th>Renewal</th>
+                  <th>Monthly Cost</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Cloud Infrastructure</strong></td>
+                  <td>Enterprise</td>
+                  <td>Aug 1, 2026</td>
+                  <td>$4,500.00</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Managed Cyber Security</strong></td>
+                  <td>Pro</td>
+                  <td>Aug 1, 2026</td>
+                  <td>$2,800.00</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Data Analytics Platform</strong></td>
+                  <td>Standard</td>
+                  <td>Sep 15, 2026</td>
+                  <td>$1,200.00</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+                <tr>
+                  <td><strong>24/7 Priority Support</strong></td>
+                  <td>Add-on</td>
+                  <td>Aug 1, 2026</td>
+                  <td>$499.00</td>
+                  <td><span class="status-badge status-badge--active">Active</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Invoices Panel -->
+        <div class="dashboard-panel" id="panel-invoices">
+          <div class="dashboard-stats" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--green"><i class="fas fa-check-circle"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">$42,600</div>
+                <div class="dashboard-stat-card__label">Paid (YTD)</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--purple"><i class="fas fa-clock"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">$8,450</div>
+                <div class="dashboard-stat-card__label">Outstanding</div>
+              </div>
+            </div>
+            <div class="card dashboard-stat-card">
+              <div class="dashboard-stat-card__icon dashboard-stat-card__icon--blue"><i class="fas fa-file-invoice"></i></div>
+              <div>
+                <div class="dashboard-stat-card__value">18</div>
+                <div class="dashboard-stat-card__label">Total Invoices</div>
+              </div>
+            </div>
+          </div>
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Invoice History</h2>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Invoice</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>INV-2026-0418</strong></td>
+                  <td>July Services — Cloud + Security</td>
+                  <td>$8,450.00</td>
+                  <td>Jul 1, 2026</td>
+                  <td><span class="status-badge status-badge--pending">Due Jul 15</span></td>
+                  <td><a href="#" style="color: var(--color-primary); font-size: var(--fs-xs); font-weight: 600;">Pay Now</a></td>
+                </tr>
+                <tr>
+                  <td><strong>INV-2026-0412</strong></td>
+                  <td>June Services — Cloud + Security</td>
+                  <td>$4,200.00</td>
+                  <td>Jun 1, 2026</td>
+                  <td><span class="status-badge status-badge--active">Paid</span></td>
+                  <td><a href="#" style="color: var(--color-primary); font-size: var(--fs-xs); font-weight: 600;">Download</a></td>
+                </tr>
+                <tr>
+                  <td><strong>INV-2026-0405</strong></td>
+                  <td>CRM Rollout — Milestone 2</td>
+                  <td>$12,500.00</td>
+                  <td>May 20, 2026</td>
+                  <td><span class="status-badge status-badge--active">Paid</span></td>
+                  <td><a href="#" style="color: var(--color-primary); font-size: var(--fs-xs); font-weight: 600;">Download</a></td>
+                </tr>
+                <tr>
+                  <td><strong>INV-2026-0398</strong></td>
+                  <td>May Services — Cloud + Security</td>
+                  <td>$4,200.00</td>
+                  <td>May 1, 2026</td>
+                  <td><span class="status-badge status-badge--active">Paid</span></td>
+                  <td><a href="#" style="color: var(--color-primary); font-size: var(--fs-xs); font-weight: 600;">Download</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Projects Panel -->
+        <div class="dashboard-panel" id="panel-projects">
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Your Projects</h2>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Manager</th>
+                  <th>Progress</th>
+                  <th>Next Milestone</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Cloud Migration Phase 2</strong></td>
+                  <td>Michael Torres</td>
+                  <td>78%</td>
+                  <td>Final cutover — Jul 5</td>
+                  <td><span class="status-badge status-badge--pending">In Progress</span></td>
+                </tr>
+                <tr>
+                  <td><strong>CRM Platform Rollout</strong></td>
+                  <td>Sarah Chen</td>
+                  <td>45%</td>
+                  <td>User training — Jul 20</td>
+                  <td><span class="status-badge status-badge--pending">In Progress</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Security Compliance Audit</strong></td>
+                  <td>Emily Watson</td>
+                  <td>100%</td>
+                  <td>Completed — Jun 15</td>
+                  <td><span class="status-badge status-badge--active">Completed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Downloads Panel -->
+        <div class="dashboard-panel" id="panel-downloads">
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Files &amp; Deliverables</h2>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>File</th>
+                  <th>Project</th>
+                  <th>Type</th>
+                  <th>Size</th>
+                  <th>Uploaded</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Q2-Analytics-Report.pdf</strong></td>
+                  <td>Data Analytics Platform</td>
+                  <td>Report</td>
+                  <td>4.2 MB</td>
+                  <td>Jun 30, 2026</td>
+                  <td><a href="#" style="color: var(--color-primary);"><i class="fas fa-download"></i></a></td>
+                </tr>
+                <tr>
+                  <td><strong>Cloud-Migration-Runbook.pdf</strong></td>
+                  <td>Cloud Migration Phase 2</td>
+                  <td>Documentation</td>
+                  <td>1.8 MB</td>
+                  <td>Jun 25, 2026</td>
+                  <td><a href="#" style="color: var(--color-primary);"><i class="fas fa-download"></i></a></td>
+                </tr>
+                <tr>
+                  <td><strong>Security-Audit-Findings.xlsx</strong></td>
+                  <td>Security Compliance Audit</td>
+                  <td>Spreadsheet</td>
+                  <td>890 KB</td>
+                  <td>Jun 15, 2026</td>
+                  <td><a href="#" style="color: var(--color-primary);"><i class="fas fa-download"></i></a></td>
+                </tr>
+                <tr>
+                  <td><strong>CRM-Training-Materials.zip</strong></td>
+                  <td>CRM Platform Rollout</td>
+                  <td>Archive</td>
+                  <td>24.6 MB</td>
+                  <td>Jun 10, 2026</td>
+                  <td><a href="#" style="color: var(--color-primary);"><i class="fas fa-download"></i></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Messages Panel -->
+        <div class="dashboard-panel" id="panel-messages">
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Messages</h2>
+              <button class="btn btn--primary btn--sm"><i class="fas fa-pen"></i> Compose</button>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>From</th>
+                  <th>Subject</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Michael Torres</strong></td>
+                  <td>Cloud Migration — Final cutover schedule</td>
+                  <td>Today, 11:30 AM</td>
+                  <td><span class="status-badge status-badge--pending">Unread</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Sarah Chen</strong></td>
+                  <td>CRM Rollout — Training session invite</td>
+                  <td>Jun 29, 2026</td>
+                  <td><span class="status-badge status-badge--active">Read</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Billing Team</strong></td>
+                  <td>Invoice INV-2026-0418 ready for payment</td>
+                  <td>Jul 1, 2026</td>
+                  <td><span class="status-badge status-badge--pending">Unread</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Support Panel -->
+        <div class="dashboard-panel" id="panel-support">
+          <div class="dashboard-grid">
+            <div class="card dashboard-card">
+              <div class="dashboard-card__header">
+                <h2 class="dashboard-card__title">Open Tickets</h2>
+                <button class="btn btn--primary btn--sm"><i class="fas fa-plus"></i> New Ticket</button>
+              </div>
+              <table class="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>Ticket</th>
+                    <th>Subject</th>
+                    <th>Priority</th>
+                    <th>Updated</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#TK-1087</strong></td>
+                    <td>API rate limit increase request</td>
+                    <td>Medium</td>
+                    <td>Today</td>
+                    <td><span class="status-badge status-badge--pending">In Progress</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>#TK-1042</strong></td>
+                    <td>Dashboard export not working</td>
+                    <td>High</td>
+                    <td>Jun 28, 2026</td>
+                    <td><span class="status-badge status-badge--active">Resolved</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card dashboard-card">
+              <div class="dashboard-card__header">
+                <h2 class="dashboard-card__title">Contact Support</h2>
+              </div>
+              <p style="font-size: var(--fs-sm); color: var(--color-text-muted); margin-bottom: 1.5rem;">Priority support — average response time under 2 hours.</p>
+              <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <a href="tel:+18005551234" class="btn btn--outline" style="justify-content: flex-start;"><i class="fas fa-phone"></i> +1 (800) 555-1234</a>
+                <a href="mailto:support@stackly.com" class="btn btn--outline" style="justify-content: flex-start;"><i class="fas fa-envelope"></i> support@stackly.com</a>
+                <a href="contact.html#faq" class="btn btn--outline" style="justify-content: flex-start;"><i class="fas fa-circle-question"></i> Browse FAQ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wishlist Panel -->
+        <div class="dashboard-panel" id="panel-wishlist">
+          <div class="card dashboard-card">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Saved Services</h2>
+              <a href="services.html" class="btn btn--outline btn--sm">Explore Services</a>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Category</th>
+                  <th>Starting Price</th>
+                  <th>Added</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>AI Analytics Suite</strong></td>
+                  <td>Data &amp; AI</td>
+                  <td>$6,200/mo</td>
+                  <td>Jun 20, 2026</td>
+                  <td><a href="#" class="btn btn--primary btn--sm">Request Quote</a></td>
+                </tr>
+                <tr>
+                  <td><strong>Mobile App Development</strong></td>
+                  <td>Software Dev</td>
+                  <td>$32,100</td>
+                  <td>May 8, 2026</td>
+                  <td><a href="#" class="btn btn--primary btn--sm">Request Quote</a></td>
+                </tr>
+                <tr>
+                  <td><strong>Digital Transformation Audit</strong></td>
+                  <td>Consulting</td>
+                  <td>$9,500</td>
+                  <td>Apr 15, 2026</td>
+                  <td><a href="#" class="btn btn--primary btn--sm">Request Quote</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="dashboard-panel" id="panel-settings">
+          <div class="card dashboard-card" style="max-width: 640px;">
+            <div class="dashboard-card__header">
+              <h2 class="dashboard-card__title">Account Settings</h2>
+            </div>
+            <form novalidate>
+              <div class="form-group">
+                <label class="form-label" for="custName">Full Name</label>
+                <input type="text" id="custName" class="form-input" value="David Klein">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="custEmail">Email</label>
+                <input type="email" id="custEmail" class="form-input" value="david.klein@meridiancorp.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="custCompany">Company</label>
+                <input type="text" id="custCompany" class="form-input" value="Meridian Corp">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="custPhone">Phone</label>
+                <input type="tel" id="custPhone" class="form-input" value="+1 (555) 234-5678">
+              </div>
+              <label class="form-checkbox" style="margin-bottom: 1.5rem;">
+                <input type="checkbox" checked>
+                <span>Email me when new deliverables are uploaded</span>
+              </label>
+              <label class="form-checkbox" style="margin-bottom: 1.5rem;">
+                <input type="checkbox" checked>
+                <span>Send invoice payment reminders</span>
+              </label>
+              <button type="submit" class="btn btn--primary">Save Changes</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+  <script src="assets/js/animations.js"></script>
+</body>
+</html>

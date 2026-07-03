@@ -1,0 +1,272 @@
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .footer__grid {
+    grid-template-columns: 1.2fr repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1200px) {
+  .nav__list,
+  .header__actions .btn--outline {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .hero__content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero__subtitle {
+    margin-inline: auto;
+  }
+
+  .hero__actions,
+  .hero__stats {
+    justify-content: center;
+  }
+
+  .hero__visual {
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .hero__float-card--1 { left: 0; }
+  .hero__float-card--3 { left: 0; }
+
+  .features-grid,
+  .process-grid,
+  .stats-banner__grid,
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .about-grid,
+  .solutions-showcase,
+  .contact-grid,
+  .faq-grid,
+  .blog-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .case-study-card,
+  .case-study-card:nth-child(even) {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 992px) {
+  .portfolio-grid,
+  .industries-grid,
+  .pricing-grid,
+  .blog-grid,
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-page__visual {
+    display: none;
+  }
+
+  .dashboard-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .dashboard-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .dashboard-main {
+    margin-left: 0;
+  }
+
+  .dashboard-sidebar-toggle {
+    display: flex;
+  }
+
+  .process-grid::before {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 70px;
+    --topbar-height: 0px;
+  }
+
+  .topbar {
+    display: none;
+  }
+
+  .header {
+    top: 0;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .features-grid,
+  .process-grid,
+  .stats-banner__grid,
+  .portfolio-grid,
+  .industries-grid,
+  .pricing-grid,
+  .blog-grid,
+  .why-grid,
+  .team-grid,
+  .footer__grid,
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-card--featured {
+    transform: none;
+  }
+
+  .hero__float-card {
+    display: none;
+  }
+
+  .about-images__secondary,
+  .about-images__experience {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    margin-top: var(--space-md);
+  }
+
+  .newsletter__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .newsletter__form {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .footer__bottom-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer__legal {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer__brand,
+  .footer__desc {
+    max-width: none;
+  }
+
+  .job-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashboard-topbar__email {
+    min-width: 0;
+    max-width: 42vw;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-2xl);
+  }
+}
+
+@media (max-width: 576px) {
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+
+  .hero__stats {
+    flex-direction: column;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .tabs__nav {
+    flex-direction: column;
+  }
+
+  .tabs__btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .contact-form-wrapper {
+    padding: var(--space-lg);
+  }
+
+  .cta-banner {
+    padding: var(--space-2xl);
+  }
+
+  .role-selector {
+    grid-template-columns: 1fr;
+  }
+
+  .error-page__digits {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .container {
+    padding-inline: 1rem;
+  }
+
+  .card__body {
+    padding: var(--space-lg);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+  }
+}

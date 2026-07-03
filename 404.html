@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Page not found — Stackly Business Solutions">
+  <title>404 — Page Not Found | Stackly Business Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <main class="error-page">
+    <div>
+      <div class="error-page__digits" aria-hidden="true">
+        <span class="error-digit">4</span>
+        <span class="error-digit">0</span>
+        <span class="error-digit">4</span>
+      </div>
+
+      <h1 class="error-page__title">Oops! Page Not Found</h1>
+      <p class="error-page__desc">
+        The page you're looking for doesn't exist, has been moved, or the URL may be incorrect. Let's get you back on track.
+      </p>
+
+      <div class="error-page__actions">
+        <button type="button" class="btn btn--outline btn--lg" id="goBack">
+          <i class="fas fa-arrow-left"></i> Go Back
+        </button>
+        <a href="index.html" class="btn btn--primary btn--lg">
+          <i class="fas fa-home"></i> Go Home
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const goBackBtn = document.getElementById('goBack');
+      if (!goBackBtn) return;
+
+      // If there's a previous entry in the session history, enable the button.
+      // Otherwise disable it so it does not navigate anywhere (user asked: previous page only).
+      if (window.history.length > 1) {
+        goBackBtn.addEventListener('click', () => window.history.back());
+      } else {
+        goBackBtn.setAttribute('disabled', '');
+        goBackBtn.setAttribute('aria-disabled', 'true');
+        goBackBtn.title = 'No previous page available';
+      }
+    })();
+  </script>
+  <script src="assets/js/transitions.js"></script>
+</body>
+</html>

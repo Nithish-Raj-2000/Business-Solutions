@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in to your Stackly Business Solutions account and access dashboards securely.">
+  <title>Login — Stackly Business Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-page__visual">
+      <div style="text-align: center; color: var(--color-text-inverse); max-width: 420px;">
+        <a href="index.html" class="logo" style="justify-content: center; margin-bottom: 2rem;">
+          <div class="logo__icon"><i class="fas fa-layer-group"></i></div>
+          <div class="logo__text">
+            <span class="logo__name">Stackly</span>
+            <span class="logo__tagline">Business Solutions</span>
+          </div>
+        </a>
+        <h2 style="font-size: var(--fs-2xl); margin-bottom: 1rem;">Secure Login</h2>
+        <p style="opacity: 0.85; line-height: 1.7; font-size: var(--fs-sm);">
+          Access your workflow, reports, and support tools with secure, role-based access.
+        </p>
+        <ul style="text-align: left; margin-top: 2rem; list-style: none; font-size: var(--fs-sm); opacity: 0.9; padding-left: 0;">
+          <li style="margin-bottom: 0.75rem;"><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 0.5rem;"></i> Instant access to dashboards</li>
+          <li style="margin-bottom: 0.75rem;"><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 0.5rem;"></i> Secure team collaboration</li>
+          <li><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 0.5rem;"></i> Enterprise-grade protection</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="auth-page__form">
+      <div class="auth-form">
+        <h1 class="auth-form__title">Sign in to Stackly</h1>
+        <p class="auth-form__subtitle">Enter your email and password to continue.</p>
+
+        <div class="role-selector" role="group" aria-label="Select access mode">
+          <div class="role-option active" data-role="customer" tabindex="0">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            <span>Customer</span>
+          </div>
+          <div class="role-option" data-role="admin" tabindex="0">
+            <i class="fas fa-shield-halved" aria-hidden="true"></i>
+            <span>Admin</span>
+          </div>
+        </div>
+
+        <form id="loginForm" data-validate-form novalidate>
+          <div class="form-group">
+            <label class="form-label" for="loginEmail">Email address</label>
+            <input type="email" id="loginEmail" name="email" class="form-input" placeholder="you@company.com" data-validate="required|email" autocomplete="email">
+            <span class="form-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="password" class="form-input" placeholder="Enter your password" data-validate="required|password" autocomplete="current-password">
+            <span class="form-error"></span>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+            <label class="form-checkbox">
+              <input type="checkbox" name="remember">
+              <span>Remember me</span>
+            </label>
+            <a href="forgot-password.html" style="font-size: var(--fs-sm); color: var(--color-primary); font-weight: 600;">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn--primary" style="width: 100%;">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          </button>
+        </form>
+
+        <div class="auth-form__footer">
+          New to Stackly? <a href="signup.html">Create an account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/forms.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/animations.js"></script>
+</body>
+</html>

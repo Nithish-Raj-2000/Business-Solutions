@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Stackly Business Solutions — schedule a consultation, request a quote, or reach our enterprise support team at hello@stackly.com.">
+  <title>Stackly | Contact</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <div id="preloader-placeholder"></div>
+  <div id="topbar"></div>
+  <div id="header-placeholder"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="page-hero__breadcrumb reveal" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <span>Contact</span>
+      </nav>
+      <h1 class="page-hero__title reveal">Get in Touch</h1>
+      <p class="reveal reveal-delay-1" style="max-width:640px;opacity:0.85;font-size:var(--fs-md);">Ready to transform your business? Our team is here to answer questions, provide consultations, and architect your digital future.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="reveal-left">
+          <span class="section-label">Contact Info</span>
+          <h2 class="section-title">Let's Start a Conversation</h2>
+          <p class="section-desc section-header--left">Whether you need a quick question answered or a comprehensive strategy session, we're here to help. Reach out through any channel below.</p>
+
+          <div class="contact-info__item glass-card">
+            <div class="contact-info__icon"><i class="fas fa-location-dot"></i></div>
+            <div>
+              <h4>Headquarters</h4>
+              <p class="text-muted" style="font-size:var(--fs-sm);">27 Innovation Drive, Tech City, TC 10001, United States</p>
+            </div>
+          </div>
+          <div class="contact-info__item glass-card">
+            <div class="contact-info__icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <h4>Phone</h4>
+              <p class="text-muted" style="font-size:var(--fs-sm);"><a href="tel:+18005551234">+1 (800) 555-1234</a></p>
+              <p class="text-muted" style="font-size:var(--fs-xs);">Mon–Fri: 9:00 AM – 6:00 PM EST</p>
+            </div>
+          </div>
+          <div class="contact-info__item glass-card">
+            <div class="contact-info__icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <h4>Email</h4>
+              <p class="text-muted" style="font-size:var(--fs-sm);"><a href="mailto:hello@stackly.com">hello@stackly.com</a></p>
+              <p class="text-muted" style="font-size:var(--fs-xs);">We respond within 24 hours</p>
+            </div>
+          </div>
+          <div class="contact-info__item glass-card">
+            <div class="contact-info__icon"><i class="fas fa-globe"></i></div>
+            <div>
+              <h4>Global Offices</h4>
+              <p class="text-muted" style="font-size:var(--fs-sm);">Tech City · London · Singapore · Dubai · New York</p>
+            </div>
+          </div>
+
+          <div style="margin-top:var(--space-xl);">
+            <h4 style="margin-bottom:var(--space-md);">Follow Us</h4>
+            <div class="footer__social">
+              <a href="404.html" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="404.html" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-right">
+          <div class="glass-card contact-form-wrapper">
+            <h3 style="margin-bottom:var(--space-sm);">Send Us a Message</h3>
+            <p class="text-muted" style="font-size:var(--fs-sm);margin-bottom:var(--space-xl);">Complete the form and a Stackly consultant will reach out within one business day.</p>
+            <form data-handler="contact" novalidate>
+              <div class="grid grid-2" style="gap:var(--space-md);">
+                <div class="form-group">
+                  <label class="form-label" for="firstName">First Name</label>
+                  <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John" data-validate="required|name">
+                  <span class="form-error"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lastName">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Doe" data-validate="required|name">
+                  <span class="form-error"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactEmail">Email Address</label>
+                <input type="email" id="contactEmail" name="email" class="form-input" placeholder="john@company.com" data-validate="required|email">
+                <span class="form-error"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactPhone">Phone Number</label>
+                <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="+1 (555) 000-0000" data-validate="phone">
+                <span class="form-error"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="company">Company Name</label>
+                <input type="text" id="company" name="company" class="form-input" placeholder="Your Company Inc." data-validate="required|company">
+                <span class="form-error"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="service">Service of Interest</label>
+                <select id="service" name="service" class="form-select" data-validate="required">
+                  <option value="">Select a service</option>
+                  <option value="consulting">IT Consulting</option>
+                  <option value="cloud">Cloud Solutions</option>
+                  <option value="security">Cyber Security</option>
+                  <option value="transformation">Digital Transformation</option>
+                  <option value="analytics">Data Analytics</option>
+                  <option value="development">Software Development</option>
+                  <option value="other">Other</option>
+                </select>
+                <span class="form-error"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="message">Message</label>
+                <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your project or question..." data-validate="required|message"></textarea>
+                <span class="form-error"></span>
+              </div>
+              <button type="submit" class="btn btn--primary btn--lg" style="width:100%;">Send Message <i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-map reveal-scale">
+        <iframe src="https://maps.google.com/maps?q=New+York+NY&t=&z=13&ie=UTF8&iwloc=&output=embed" title="Stackly Office Location Map" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gray" id="faq">
+    <div class="container">
+      <div class="faq-grid">
+        <div class="reveal-left">
+          <div class="section-header section-header--left">
+            <span class="section-label">FAQ</span>
+            <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+            <p class="section-desc">Find quick answers about our services, timelines, security practices, and project process before you reach out.</p>
+          </div>
+        </div>
+        <div class="accordion reveal-right">
+          <div class="accordion-item active">
+            <button class="accordion-header" type="button">What industries does Stackly specialize in? <i class="fas fa-chevron-down"></i></button>
+            <div class="accordion-body" style="max-height: 200px;">
+              <div class="accordion-body__inner">Stackly serves finance, healthcare, retail, manufacturing, education, and logistics clients with a mix of domain expertise and enterprise technology delivery.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" type="button">How long does a typical project take? <i class="fas fa-chevron-down"></i></button>
+            <div class="accordion-body">
+              <div class="accordion-body__inner">Timelines vary by scope. Cloud migrations often take 3-6 months, while custom software and transformation programs can range from 4-12 months.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" type="button">Do you offer post-project support? <i class="fas fa-chevron-down"></i></button>
+            <div class="accordion-body">
+              <div class="accordion-body__inner">Yes. We provide managed services, monitoring, maintenance, security updates, and dedicated account management after launch.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" type="button">How do you ensure security and compliance? <i class="fas fa-chevron-down"></i></button>
+            <div class="accordion-body">
+              <div class="accordion-body__inner">We use secure architecture, access controls, encryption, regular testing, and compliance-aligned delivery practices for regulated environments.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" type="button">Can Stackly work with our existing systems? <i class="fas fa-chevron-down"></i></button>
+            <div class="accordion-body">
+              <div class="accordion-body__inner">Yes. We regularly integrate with existing cloud platforms, ERP and CRM systems, data platforms, databases, and internal enterprise tools.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3">
+        <div class="stat-card glass-card reveal">
+          <div class="card__icon" style="margin-inline:auto;"><i class="fas fa-clock"></i></div>
+          <h4>Response Time</h4>
+          <p class="text-muted" style="font-size:var(--fs-sm);">Average response within 4 hours during business days</p>
+        </div>
+        <div class="stat-card glass-card reveal reveal-delay-1">
+          <div class="card__icon" style="margin-inline:auto;"><i class="fas fa-calendar-check"></i></div>
+          <h4>Free Consultation</h4>
+          <p class="text-muted" style="font-size:var(--fs-sm);">30-minute strategy session with a senior consultant — no obligation</p>
+        </div>
+        <div class="stat-card glass-card reveal reveal-delay-2">
+          <div class="card__icon" style="margin-inline:auto;"><i class="fas fa-shield-halved"></i></div>
+          <h4>NDA Available</h4>
+          <p class="text-muted" style="font-size:var(--fs-sm);">Mutual NDA provided upon request for confidential discussions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <div id="back-to-top-placeholder"></div>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/forms.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
