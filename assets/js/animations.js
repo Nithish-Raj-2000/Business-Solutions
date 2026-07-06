@@ -9,6 +9,12 @@ const StacklyAnimations = (() => {
 
     const hidePreloader = () => preloader.classList.add('hidden');
 
+    // If this page is restored from the back/forward cache (user pressed Back
+    // after a transition showed the preloader), hide the leftover overlay.
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) hidePreloader();
+    });
+
     if (document.readyState === 'complete') {
       hidePreloader();
     } else {

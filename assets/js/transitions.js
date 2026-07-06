@@ -39,3 +39,13 @@ const StacklyTransitions = (() => {
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(StacklyTransitions.init, 150);
 });
+
+// When the browser restores a page from the back/forward cache (e.g. the user
+// pressed Back), the preloader shown just before leaving would still be
+// covering the page — hide it again.
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    const preloader = document.getElementById('preloader');
+    if (preloader) preloader.classList.add('hidden');
+  }
+});
