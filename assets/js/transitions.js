@@ -1,48 +1,15 @@
 /**
  * Stackly — Page Transitions
+ *
+ * Navigation is left entirely to the browser. The previous implementation
+ * intercepted link clicks, showed the preloader, and navigated after a
+ * 500ms delay — on real network latency (e.g. GitHub Pages) that caused
+ * stuck preloader overlays after Back navigation, races with other click
+ * handlers, and polluted browser history.
  */
 
-const StacklyTransitions = (() => {
-  function initPageTransitions() {
-    const preloader = document.getElementById('preloader');
-    if (!preloader) return;
-
-    document.querySelectorAll('a').forEach(link => {
-      const href = link.getAttribute('href');
-
-      // Ignore links that are not for navigation
-      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.getAttribute('target') === '_blank' || link.hasAttribute('data-video')) {
-        return;
-      }
-
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        // Show preloader
-        preloader.classList.remove('hidden');
-
-        // Wait for the preloader fade to play then navigate
-        setTimeout(() => {
-          window.location.href = href;
-        }, 500);
-      });
-    });
-  }
-
-  function init() {
-    initPageTransitions();
-  }
-
-  return { init };
-})();
-
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(StacklyTransitions.init, 150);
-});
-
-// When the browser restores a page from the back/forward cache (e.g. the user
-// pressed Back), the preloader shown just before leaving would still be
-// covering the page — hide it again.
+// Safety net: if a page is restored from the back/forward cache with the
+// preloader still visible, hide it.
 window.addEventListener('pageshow', (e) => {
   if (e.persisted) {
     const preloader = document.getElementById('preloader');
