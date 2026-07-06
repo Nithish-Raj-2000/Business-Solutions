@@ -66,18 +66,29 @@
             </div>
           </div>
 
-          <div style="margin-top:var(--space-xl);">
-            <h4 style="margin-bottom:var(--space-md);">Follow Us</h4>
-            <div class="footer__social">
-              <a href="404.html" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-              <a href="404.html" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-              <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-              <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <div style="margin-top:var(--space-xl); display:flex; align-items:flex-start; gap:var(--space-2xl); flex-wrap:wrap;">
+            <div>
+              <h4 style="margin-bottom:var(--space-md);">Working Hours</h4>
+              <div class="contact-info__item glass-card" style="max-width: 320px; padding: var(--space-md);">
+                <div class="contact-info__icon"><i class="fas fa-clock"></i></div>
+                <div>
+                  <p class="text-muted" style="font-size:var(--fs-xs); margin: 0;">Mon &ndash; Fri: 9:00 AM &ndash; 6:00 PM<br>Sat: 10:00 AM &ndash; 2:00 PM<br>Sun: Closed</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 style="margin-bottom:var(--space-md);">Follow Us</h4>
+              <div class="footer__social">
+                <a href="404.html" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="404.html" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="reveal-right">
+        <div class="reveal-right" id="contact-form">
           <div class="glass-card contact-form-wrapper">
             <h3 style="margin-bottom:var(--space-sm);">Send Us a Message</h3>
             <p class="text-muted" style="font-size:var(--fs-sm);margin-bottom:var(--space-xl);">Complete the form and a Stackly consultant will reach out within one business day.</p>
@@ -101,7 +112,7 @@
               </div>
               <div class="form-group">
                 <label class="form-label" for="contactPhone">Phone Number</label>
-                <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="+1 (555) 000-0000" data-validate="phone">
+                <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="9876543210" maxlength="10" inputmode="numeric" data-validate="phone">
                 <span class="form-error"></span>
               </div>
               <div class="form-group">
@@ -149,6 +160,12 @@
             <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
             <p class="section-desc">Find quick answers about our services, timelines, security practices, and project process before you reach out.</p>
           </div>
+          <ul class="faq-highlights">
+            <li><i class="fas fa-circle-check"></i> Transparent pricing with no hidden costs</li>
+            <li><i class="fas fa-circle-check"></i> Dedicated project manager for every engagement</li>
+            <li><i class="fas fa-circle-check"></i> Enterprise-grade security and compliance on all projects</li>
+            <li><i class="fas fa-circle-check"></i> Flexible engagement models — fixed price, T&amp;M, or retainer</li>
+          </ul>
         </div>
         <div class="accordion reveal-right">
           <div class="accordion-item active">

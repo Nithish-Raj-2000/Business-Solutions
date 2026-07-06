@@ -41,6 +41,9 @@ const StacklyDashboard = (() => {
 
     links.forEach(link => {
       link.addEventListener('click', (e) => {
+        // CTA-style buttons (e.g. "View All") are routed to the 404 2 page by the
+        // button fallback — don't switch panels or push history for them.
+        if (link.classList.contains('btn')) return;
         e.preventDefault();
         const panelId = link.getAttribute('data-panel');
         activatePanel(panelId, true);
@@ -80,6 +83,13 @@ const StacklyDashboard = (() => {
     const phoneField = settingsForm.querySelector('#custPhone');
     const saveBtn = settingsForm.querySelector('button[type="submit"]') || settingsForm.querySelector('button');
 
+    // Prefill from the logged-in user (name/email come from the signup form)
+    const storedUser = JSON.parse(localStorage.getItem('stackly_user') || 'null') || {};
+    if (nameField && storedUser.name) nameField.value = storedUser.name;
+    if (emailField && storedUser.email) emailField.value = storedUser.email;
+    if (companyField && storedUser.company) companyField.value = storedUser.company;
+    if (phoneField && storedUser.phone) phoneField.value = storedUser.phone;
+
     function showSaveState(ok) {
       if (!saveBtn) return;
       const prevText = saveBtn.textContent;
@@ -91,6 +101,40 @@ const StacklyDashboard = (() => {
       }, 1500);
     }
 
+    function setFieldError(field, message) {
+      if (!field) return;
+      const errorEl = field.closest('.form-group')?.querySelector('.form-error');
+      field.classList.toggle('error', !!message);
+      field.classList.toggle('success', !message && field.value.trim() !== '');
+      if (errorEl) errorEl.textContent = message || '';
+    }
+
+    const fieldValidators = [
+      [nameField, (v) => v === '' ? 'This field is required' : (/^[A-Za-z][A-Za-z\s'.-]{1,49}$/.test(v) ? '' : 'Use 2-50 letters only')],
+      [emailField, (v) => v === '' ? 'This field is required' : (/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(v) ? '' : 'Please enter a valid email')],
+      [companyField, (v) => (v === '' || /^[A-Za-z0-9][A-Za-z0-9\s&.,'-]{1,79}$/.test(v)) ? '' : 'Use 2-80 valid company characters'],
+      [phoneField, (v) => (v === '' || /^[0-9]{10}$/.test(v)) ? '' : 'Phone number must be exactly 10 digits']
+    ];
+
+    function validateSettings() {
+      let firstInvalid = null;
+      fieldValidators.forEach(([field, check]) => {
+        if (!field) return;
+        const message = check(field.value.trim());
+        setFieldError(field, message);
+        if (message && !firstInvalid) firstInvalid = field;
+      });
+      return firstInvalid;
+    }
+
+    fieldValidators.forEach(([field, check]) => {
+      if (!field) return;
+      field.addEventListener('input', () => {
+        if (field.classList.contains('error')) setFieldError(field, check(field.value.trim()));
+      });
+      field.addEventListener('blur', () => setFieldError(field, check(field.value.trim())));
+    });
+
     settingsForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
@@ -99,13 +143,9 @@ const StacklyDashboard = (() => {
       const companyVal = (companyField && companyField.value || '').trim();
       const phoneVal = (phoneField && phoneField.value || '').trim();
 
-      if (!nameVal) {
-        if (nameField) nameField.focus();
-        showSaveState(false);
-        return;
-      }
-      if (!emailVal || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(emailVal)) {
-        if (emailField) emailField.focus();
+      const firstInvalid = validateSettings();
+      if (firstInvalid) {
+        firstInvalid.focus();
         showSaveState(false);
         return;
       }
@@ -119,6 +159,20 @@ const StacklyDashboard = (() => {
           phone: phoneVal || existing.phone || ''
         });
         localStorage.setItem('stackly_user', JSON.stringify(updated));
+        // Keep the registered account in sync so the name persists across logins
+        let accounts = [];
+        try { accounts = JSON.parse(localStorage.getItem('stackly_accounts') || '[]'); } catch (err2) { accounts = []; }
+        if (Array.isArray(accounts)) {
+          const prevEmail = (existing.email || emailVal).toLowerCase();
+          const idx = accounts.findIndex(a => {
+            const acctEmail = (a.email || '').toLowerCase();
+            return acctEmail === prevEmail || acctEmail === emailVal.toLowerCase();
+          });
+          if (idx >= 0) {
+            accounts[idx] = Object.assign({}, accounts[idx], { name: nameVal, email: emailVal });
+            localStorage.setItem('stackly_accounts', JSON.stringify(accounts));
+          }
+        }
         // update visible UI elements
         const nameEls = document.querySelectorAll('[data-user-name]');
         const emailEls = document.querySelectorAll('[data-user-email]');
@@ -157,13 +211,17 @@ document.addEventListener('click', function (e) {
   if (el.hasAttribute && el.hasAttribute('data-panel')) return;
   if (el.closest && el.closest('#dashboardSidebar')) return;
 
+  // Links with a real destination (e.g. "404 2.html") navigate normally
+  const href = el.getAttribute && el.getAttribute('href');
+  if (href && href !== '#') return;
+
   const text = (el.textContent || '').trim();
   const hasDownloadIcon = el.querySelector && el.querySelector('.fa-download');
 
   if (/^pay\s*now$/i.test(text) || /download/i.test(text) || hasDownloadIcon) {
     e.preventDefault();
-    // store source so 404 can reliably return if needed
+    // store source so the 404 page can reliably return if needed
     try { sessionStorage.setItem('redirectSource', window.location.href); } catch (err) {}
-    window.location.href = '404.html';
+    window.location.href = '404 2.html';
   }
 });

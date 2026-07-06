@@ -27,8 +27,8 @@
         <button type="button" class="btn btn--outline btn--lg" id="goBack">
           <i class="fas fa-arrow-left"></i> Go Back
         </button>
-        <a href="index.html" class="btn btn--primary btn--lg" id="goHome">
-          <i class="fas fa-home"></i> Go Home
+        <a href="customer-dashboard.html" class="btn btn--primary btn--lg" id="goDashboard">
+          <i class="fas fa-gauge-high"></i> Go Dashboard
         </a>
       </div>
     </div>
@@ -36,29 +36,35 @@
 
   <script>
     (function () {
+      // Go Back → previous page in history, with dashboard fallbacks
       const goBackBtn = document.getElementById('goBack');
-      if (!goBackBtn) return;
-
-      // If there's a previous entry in the session history, enable the button.
-      // Otherwise disable it so it does not navigate anywhere (user asked: previous page only).
-      if (window.history.length > 1) {
-        goBackBtn.addEventListener('click', () => window.history.back());
-      } else {
-        goBackBtn.setAttribute('disabled', '');
-        goBackBtn.setAttribute('aria-disabled', 'true');
-        goBackBtn.title = 'No previous page available';
+      if (goBackBtn) {
+        goBackBtn.addEventListener('click', () => {
+          if (window.history.length > 1) {
+            window.history.back();
+            return;
+          }
+          // No history (page opened directly): use the stored source or referrer
+          let fallback = '';
+          try { fallback = sessionStorage.getItem('redirectSource') || ''; } catch (err) {}
+          if (!fallback && document.referrer) fallback = document.referrer;
+          if (!fallback) {
+            const user = JSON.parse(localStorage.getItem('stackly_user') || 'null');
+            fallback = (user && user.role === 'admin') ? 'admin-dashboard.html' : 'customer-dashboard.html';
+          }
+          window.location.href = fallback;
+        });
       }
 
-      // When arriving from a dashboard, offer "Go Dashboard" instead of "Go Home"
-      const goHome = document.getElementById('goHome');
-      const referrer = document.referrer || '';
-      if (goHome) {
-        if (referrer.includes('admin-dashboard')) {
-          goHome.href = 'admin-dashboard.html';
-          goHome.innerHTML = '<i class="fas fa-gauge-high"></i> Go Dashboard';
-        } else if (referrer.includes('customer-dashboard')) {
-          goHome.href = 'customer-dashboard.html';
-          goHome.innerHTML = '<i class="fas fa-gauge-high"></i> Go Dashboard';
+      // Go Dashboard → the logged-in user's dashboard home
+      const goDashboard = document.getElementById('goDashboard');
+      if (goDashboard) {
+        const referrer = document.referrer || '';
+        const user = JSON.parse(localStorage.getItem('stackly_user') || 'null');
+        if (referrer.includes('admin-dashboard') || (user && user.role === 'admin')) {
+          goDashboard.href = 'admin-dashboard.html';
+        } else {
+          goDashboard.href = 'customer-dashboard.html';
         }
       }
     })();

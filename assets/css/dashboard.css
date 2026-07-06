@@ -27,7 +27,8 @@
   gap: var(--space-md);
 }
 
-.dashboard-sidebar__header .logo__image {
+.dashboard-sidebar__header .logo__image,
+.dashboard-sidebar__header .logo__mark {
   height: 32px;
   width: 107px;
 }

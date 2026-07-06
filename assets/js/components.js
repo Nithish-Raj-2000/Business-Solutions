@@ -11,7 +11,6 @@ const StacklyComponents = (() => {
     { href: 'about.html', label: 'About' },
     { href: 'services.html', label: 'Services' },
     { href: 'solutions.html', label: 'Solutions' },
-    { href: 'industries.html', label: 'Industries' },
     { href: 'team.html', label: 'Team' },
     { href: 'blog.html', label: 'Blog' },
     { href: 'contact.html', label: 'Contact' }
@@ -43,14 +42,14 @@ const StacklyComponents = (() => {
     const transparent = currentPage === '' || currentPage === 'index.html' ? 'header--transparent' : 'header--solid';
     const navLinks = navItems.map(renderNavItem).join('');
     const mobileLinks = navItems.map(item => {
-      return `<a href="${item.href}" class="mobile-nav__link">${item.label}</a>`;
+      return `<a href="${item.href}" class="mobile-nav__link ${isActive(item.href)}">${item.label}</a>`;
     }).join('');
 
     return `
       <header class="header ${transparent}" id="header" role="navigation" aria-label="Main navigation">
         <div class="container header__inner">
           <a href="index.html" class="logo" aria-label="Stackly Business Solutions Home">
-            <img src="assets/images/logos/stackly-logo-white.webp" alt="Stackly" class="logo__image">
+            <span class="logo__mark" role="img" aria-label="Stackly"></span>
             <span class="logo__tagline">Business Solutions</span>
           </a>
           <nav class="nav" aria-label="Primary">
@@ -84,7 +83,7 @@ const StacklyComponents = (() => {
             <div class="footer__grid">
               <div class="footer__brand">
                 <a href="index.html" class="logo">
-                  <img src="assets/images/logos/stackly-logo-white.webp" alt="Stackly" class="logo__image">
+                  <span class="logo__mark" role="img" aria-label="Stackly"></span>
                   <span class="logo__tagline">Business Solutions</span>
                 </a>
                 <p class="footer__desc">Empowering Businesses Through Smart Digital Innovation. We deliver cutting-edge technology solutions that drive growth, efficiency, and competitive advantage.</p>
@@ -101,23 +100,21 @@ const StacklyComponents = (() => {
                 <ul class="footer__links">
                   <li><a href="index.html">Home</a></li>
                   <li><a href="about.html">About Us</a></li>
-                  <li><a href="services.html">Services</a></li>
                   <li><a href="solutions.html">Solutions</a></li>
-                  <li><a href="industries.html">Industries</a></li>
                   <li><a href="blog.html">Blog</a></li>
-                  <li><a href="career.html">Careers</a></li>
+                  <li><a href="team.html">Team</a></li>
                   <li><a href="contact.html">Contact</a></li>
                 </ul>
               </div>
               <div>
                 <h4 class="footer__title">Services</h4>
                 <ul class="footer__links">
-                  <li><a href="services.html">IT Consulting</a></li>
-                  <li><a href="services.html">Cloud Solutions</a></li>
-                  <li><a href="services.html">Cyber Security</a></li>
-                  <li><a href="services.html">Digital Transformation</a></li>
-                  <li><a href="services.html">Data Analytics</a></li>
-                  <li><a href="services.html">Software Development</a></li>
+                  <li><a href="404.html">IT Consulting</a></li>
+                  <li><a href="404.html">Cloud Solutions</a></li>
+                  <li><a href="404.html">Cyber Security</a></li>
+                  <li><a href="404.html">Digital Transformation</a></li>
+                  <li><a href="404.html">Data Analytics</a></li>
+                  <li><a href="404.html">Software Development</a></li>
                 </ul>
               </div>
               <div>
@@ -128,22 +125,18 @@ const StacklyComponents = (() => {
                 </div>
                 <div class="footer__contact-item">
                   <i class="fas fa-phone"></i>
-                  <a href="tel:+18005551234">+1 (800) 555-1234</a>
+                  <a href="404.html">+1 (800) 555-1234</a>
                 </div>
                 <div class="footer__contact-item">
                   <i class="fas fa-envelope"></i>
-                  <a href="mailto:hello@stackly.com">hello@stackly.com</a>
-                </div>
-                <div class="footer__hours">
-                  <strong>Working Hours:</strong><br>
-                  Mon - Fri: 9:00 AM - 6:00 PM<br>
-                  Sat: 10:00 AM - 2:00 PM
+                  <a href="404.html">hello@stackly.com</a>
                 </div>
                 <div class="footer__newsletter">
                   <h4 class="footer__title" style="margin-top: 1.5rem;">Newsletter</h4>
-                  <form class="footer__newsletter-form" id="footerNewsletter" novalidate>
-                    <input type="email" placeholder="Your email" aria-label="Email for newsletter" required>
-                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                  <form class="footer__newsletter-form" id="footerNewsletter" data-validate-form data-handler="newsletter" novalidate>
+                    <input type="email" placeholder="Your email" aria-label="Email for newsletter" data-validate="required|email" required>
+                    <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                    <span class="form-error" aria-live="polite"></span>
                   </form>
                 </div>
               </div>

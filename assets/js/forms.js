@@ -9,7 +9,7 @@ const StacklyForms = (() => {
       return value.trim() !== '' || 'This field is required';
     },
     email: (value) => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value.trim()) || 'Please enter a valid email',
-    phone: (value) => value.trim() === '' || /^\+?[0-9][0-9\s\-()]{6,19}$/.test(value.trim()) || 'Please enter a valid phone number',
+    phone: (value) => value.trim() === '' || /^[0-9]{10}$/.test(value.trim()) || 'Phone number must be exactly 10 digits',
     name: (value) => /^[A-Za-z][A-Za-z\s'.-]{1,49}$/.test(value.trim()) || 'Use 2-50 letters only',
     company: (value) => /^[A-Za-z0-9][A-Za-z0-9\s&.,'-]{1,79}$/.test(value.trim()) || 'Use 2-80 valid company characters',
     subject: (value) => /^[A-Za-z0-9][A-Za-z0-9\s.,!?&()'":;-]{4,99}$/.test(value.trim()) || 'Use 5-100 valid characters',
@@ -81,6 +81,27 @@ const StacklyForms = (() => {
     });
   }
 
+  function showToast(message) {
+    let toast = document.getElementById('stacklyToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'stacklyToast';
+      toast.setAttribute('role', 'status');
+      toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:10000;display:flex;align-items:center;gap:0.6rem;padding:1rem 1.5rem;background:#10b981;color:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.3);font-weight:500;opacity:0;transform:translateY(12px);transition:opacity 0.3s ease, transform 0.3s ease;pointer-events:none;';
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = '<i class="fas fa-circle-check"></i>' + message;
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+    });
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(12px)';
+    }, 3500);
+  }
+
   function showSuccess(form, message) {
     let successEl = form.querySelector('.form-success');
     if (!successEl) {
@@ -140,8 +161,9 @@ const StacklyForms = (() => {
       form.reset(); // Reset after success message
     },
     newsletter(form) {
-      showSuccess(form, 'Successfully subscribed to our newsletter!');
+      showToast('Successfully subscribed to our newsletter!');
       form.reset();
+      form.querySelectorAll('[data-validate]').forEach(f => f.classList.remove('success', 'error'));
     },
     quote(form) {
       showSuccess(form, 'Quote request received! Our team will contact you shortly.');
@@ -168,7 +190,7 @@ const StacklyForms = (() => {
 
   }
 
-  return { init, handlers, showSuccess };
+  return { init, handlers, showSuccess, showToast };
 })();
 
 document.addEventListener('DOMContentLoaded', StacklyForms.init);

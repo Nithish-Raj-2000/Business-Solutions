@@ -474,7 +474,22 @@
 }
 
 .stats-banner__item {
-  padding: var(--space-lg);
+  padding: var(--space-xl) var(--space-lg);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: default;
+  user-select: none;
+  transition: transform var(--transition-base), background var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.stats-banner__item:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(77, 208, 225, 0.5);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25), 0 0 20px rgba(0, 188, 212, 0.15);
 }
 
 .stats-banner__number {
@@ -656,8 +671,51 @@
   transition: all var(--transition-base);
 }
 
+.contact-info__item {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+/* Soft gradient wash that fades in on hover */
+.contact-info__item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(26, 35, 126, 0.06), rgba(0, 188, 212, 0.1));
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+
+/* Cyan accent bar sliding in on the left edge */
+.contact-info__item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--gradient-button);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s ease;
+  pointer-events: none;
+}
+
 .contact-info__item:hover {
   background: var(--color-bg-light);
+  transform: translateX(8px);
+  border-color: rgba(0, 188, 212, 0.3);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1), 0 0 18px rgba(0, 188, 212, 0.08);
+}
+
+.contact-info__item:hover::before {
+  opacity: 1;
+}
+
+.contact-info__item:hover::after {
+  transform: scaleY(1);
 }
 
 .contact-info__icon {
@@ -671,6 +729,128 @@
   color: var(--color-primary);
   font-size: 1.25rem;
   flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+.contact-info__item:hover .contact-info__icon {
+  background: var(--gradient-button);
+  color: var(--color-text-inverse);
+  transform: scale(1.1) rotate(-6deg);
+  box-shadow: 0 8px 18px rgba(0, 188, 212, 0.35);
+}
+
+/* Solutions page — metric cards invert to the dark brand gradient */
+.solution-metric-card.stat-card {
+  transition: all var(--transition-base);
+}
+
+.solution-metric-card.stat-card:hover {
+  transform: translateY(-10px);
+  background: var(--gradient-hero);
+  box-shadow: 0 20px 45px rgba(13, 22, 66, 0.35);
+}
+
+.solution-metric-card .stat-card__number,
+.solution-metric-card .stat-card__label {
+  transition: all var(--transition-base);
+}
+
+.solution-metric-card.stat-card:hover .stat-card__number {
+  background: linear-gradient(135deg, #4dd0e1, #00e5ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.12);
+}
+
+.solution-metric-card.stat-card:hover .stat-card__label {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+/* Solutions page — case-study cards tilt with a gradient base sweep */
+.solution-case-card.card {
+  position: relative;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.solution-case-card.card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: var(--gradient-button);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s ease;
+  pointer-events: none;
+}
+
+.solution-case-card.card:hover {
+  transform: translateY(-8px) rotate(-1deg) scale(1.02);
+  box-shadow: 0 22px 45px rgba(26, 35, 126, 0.18);
+}
+
+.solution-case-card.card:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.solution-case-card .card__icon {
+  transition: all var(--transition-base);
+}
+
+.solution-case-card.card:hover .card__icon {
+  background: var(--gradient-button);
+  color: var(--color-text-inverse);
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 10px 22px rgba(0, 188, 212, 0.35);
+}
+
+.solution-case-card .stat-card__number {
+  display: inline-block;
+  transition: transform var(--transition-base);
+}
+
+.solution-case-card.card:hover .stat-card__number {
+  transform: scale(1.15);
+  transform-origin: left bottom;
+}
+
+/* FAQ left-column extras */
+.faq-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.faq-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.faq-highlights i {
+  color: var(--color-secondary);
+  margin-top: 3px;
+}
+
+/* Social icons on the light contact page (reuse footer markup) */
+.contact-grid .footer__social a {
+  background: rgba(26, 35, 126, 0.08);
+  color: var(--color-primary);
+}
+
+.contact-grid .footer__social a:hover {
+  background: var(--gradient-button);
+  color: var(--color-text-inverse);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 188, 212, 0.3);
 }
 
 .contact-form-wrapper {

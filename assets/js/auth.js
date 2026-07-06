@@ -10,6 +10,36 @@ const StacklyAuth = (() => {
     password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,64}$/
   };
 
+  function getAccounts() {
+    let accounts = [];
+    try { accounts = JSON.parse(localStorage.getItem('stackly_accounts') || '[]'); } catch (e) { accounts = []; }
+    if (!Array.isArray(accounts)) accounts = [];
+    // Migrate the old single-account storage into the accounts list
+    const legacy = JSON.parse(localStorage.getItem('stackly_registered') || 'null');
+    if (legacy && legacy.email && !accounts.some(a => (a.email || '').toLowerCase() === legacy.email.toLowerCase())) {
+      accounts.push(legacy);
+      localStorage.setItem('stackly_accounts', JSON.stringify(accounts));
+      localStorage.removeItem('stackly_registered');
+    }
+    return accounts;
+  }
+
+  function saveAccount(account) {
+    const accounts = getAccounts();
+    const idx = accounts.findIndex(a => (a.email || '').toLowerCase() === account.email.toLowerCase());
+    if (idx >= 0) {
+      accounts[idx] = Object.assign({}, accounts[idx], account);
+    } else {
+      accounts.push(account);
+    }
+    localStorage.setItem('stackly_accounts', JSON.stringify(accounts));
+  }
+
+  function findAccount(email) {
+    const target = (email || '').trim().toLowerCase();
+    return getAccounts().find(a => (a.email || '').toLowerCase() === target) || null;
+  }
+
   function setFieldError(field, message = '') {
     if (!field) return false;
     const errorEl = field.closest('.form-group')?.querySelector('.form-error');
@@ -60,10 +90,22 @@ const StacklyAuth = (() => {
       const valid = validateEmail(email) && validatePassword(password);
       if (!valid) return;
 
+      const account = findAccount(email.value);
+
+      if (!account) {
+        setFieldError(email, 'No account found with this email. Please create an account first.');
+        return;
+      }
+
+      if (account.password !== password.value) {
+        setFieldError(password, 'Incorrect password. Please try again.');
+        return;
+      }
+
       const user = {
         email: email.value,
         role: selectedRole,
-        name: email.value.split('@')[0],
+        name: account.name || email.value.split('@')[0],
         loginTime: new Date().toISOString()
       };
 
@@ -100,6 +142,12 @@ const StacklyAuth = (() => {
       const termsError = form.querySelector('[data-terms-error]');
       if (termsError) termsError.textContent = termsValid ? '' : 'You must accept the terms';
       if (!(nameValid && emailValid && passwordValid && confirmValid && termsValid)) return;
+
+      saveAccount({
+        name: name.value.trim(),
+        email: email.value.trim(),
+        password: password.value
+      });
 
       window.location.href = 'login.html';
     });

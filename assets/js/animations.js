@@ -239,7 +239,8 @@ const StacklyAnimations = (() => {
   }
 
   function initButtonFallbackNavigation() {
-    if (window.location.pathname.endsWith('404.html')) return;
+    const currentPath = decodeURIComponent(window.location.pathname);
+    if (currentPath.endsWith('404.html') || currentPath.endsWith('404 2.html')) return;
 
     const allowedControls = [
       '.accordion-header',
@@ -263,13 +264,14 @@ const StacklyAnimations = (() => {
       const target = e.target.closest('.btn, button');
       if (!target || target.matches(allowedControls) || target.closest('form')) return;
 
+      // Any element with a real destination navigates normally
       const href = target.getAttribute('href');
-      if (href && (href.startsWith('mailto:') || href.startsWith('tel:'))) return;
-      if (href === 'login.html' || href === 'signup.html') return;
+      if (href && href !== '#') return;
 
       e.preventDefault();
       e.stopImmediatePropagation();
-      window.location.href = '404.html';
+      const isDashboard = window.location.pathname.includes('dashboard');
+      window.location.href = isDashboard ? '404 2.html' : '404.html';
     });
   }
 
