@@ -101,19 +101,7 @@ const StacklyAuth = (() => {
       if (termsError) termsError.textContent = termsValid ? '' : 'You must accept the terms';
       if (!(nameValid && emailValid && passwordValid && confirmValid && termsValid)) return;
 
-      const user = {
-        email: email.value,
-        name: name.value,
-        role: selectedRole,
-        loginTime: new Date().toISOString()
-      };
-
-      localStorage.setItem('stackly_user', JSON.stringify(user));
-      sessionStorage.setItem('stackly_session', 'active');
-
-      window.location.href = selectedRole === 'admin'
-        ? 'admin-dashboard.html'
-        : 'customer-dashboard.html';
+      window.location.href = 'login.html';
     });
   }
 
@@ -191,7 +179,7 @@ const StacklyAuth = (() => {
     const emailEl = document.querySelector('[data-user-email]');
     const avatarEl = document.querySelector('[data-user-avatar]');
 
-    if (nameEl) nameEl.textContent = email || user.name || 'User';
+    if (nameEl) nameEl.textContent = user.name || email || 'User';
     if (emailEl) emailEl.textContent = email || 'user@stackly.com';
     if (avatarEl) avatarEl.textContent = (email.trim()[0] || 'U').toUpperCase();
   }

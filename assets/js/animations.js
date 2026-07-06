@@ -7,9 +7,7 @@ const StacklyAnimations = (() => {
     const preloader = document.getElementById('preloader');
     if (!preloader) return;
 
-    const hidePreloader = () => {
-      setTimeout(() => preloader.classList.add('hidden'), 800);
-    };
+    const hidePreloader = () => preloader.classList.add('hidden');
 
     if (document.readyState === 'complete') {
       hidePreloader();
@@ -17,7 +15,7 @@ const StacklyAnimations = (() => {
       window.addEventListener('load', hidePreloader, { once: true });
     }
 
-    setTimeout(() => preloader.classList.add('hidden'), 3000);
+    setTimeout(hidePreloader, 500);
   }
 
   function initScrollReveal() {
@@ -198,23 +196,11 @@ const StacklyAnimations = (() => {
   }
 
   function initVideoPopup() {
-    const popup = document.getElementById('videoPopup');
-    if (!popup) return;
-
     document.querySelectorAll('[data-video]').forEach(trigger => {
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
-        const url = trigger.getAttribute('data-video');
-        const iframe = popup.querySelector('iframe');
-        if (iframe) iframe.src = url;
-        popup.classList.add('active');
+        window.location.href = '404.html';
       });
-    });
-
-    popup.querySelector('.video-popup__close')?.addEventListener('click', () => {
-      popup.classList.remove('active');
-      const iframe = popup.querySelector('iframe');
-      if (iframe) iframe.src = '';
     });
   }
 
@@ -267,6 +253,8 @@ const StacklyAnimations = (() => {
       '.video-popup__close',
       '#backToTop',
       '#sidebarToggle',
+      '#sidebarClose',
+      '.custom-select__trigger',
       '[data-video]',
       '[data-allow-action="true"]'
     ].join(',');

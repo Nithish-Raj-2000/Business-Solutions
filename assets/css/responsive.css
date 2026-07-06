@@ -106,6 +106,10 @@
     display: flex;
   }
 
+  .dashboard-sidebar__close {
+    display: flex;
+  }
+
   .process-grid::before {
     display: none;
   }
@@ -240,6 +244,30 @@
   .error-page__digits {
     flex-direction: column;
     gap: 0;
+  }
+
+  .page-hero .blob {
+    display: none;
+  }
+
+  .dashboard-topbar {
+    padding-inline: var(--space-md);
+  }
+
+  .dashboard-topbar__actions {
+    gap: var(--space-sm);
+  }
+
+  .dashboard-topbar__profile > div:last-child {
+    display: none;
+  }
+
+  .dashboard-topbar__email {
+    max-width: 34vw;
+  }
+
+  .dashboard-content {
+    padding: var(--space-lg) var(--space-md);
   }
 }
 

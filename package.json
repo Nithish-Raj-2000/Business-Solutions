@@ -1,0 +1,7 @@
+{
+  "name": "stackly-business-solutions",
+  "private": true,
+  "scripts": {
+    "start": "npx serve -l 5500 ."
+  }
+}

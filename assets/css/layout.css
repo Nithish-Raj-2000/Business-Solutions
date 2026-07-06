@@ -100,9 +100,9 @@
 
 /* Logo */
 .logo {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.35rem;
   font-family: var(--font-display);
   font-weight: var(--fw-bold);
   font-size: var(--fs-lg);
@@ -136,11 +136,35 @@
   font-size: var(--fs-xs);
   font-weight: var(--fw-regular);
   opacity: 0.7;
+  width: 100%;
+}
+
+.logo__image {
+  height: 42px;
+  width: 140px;
+  display: block;
+}
+
+.header--solid .logo__tagline {
+  color: var(--color-text);
+}
+
+.header--solid .logo__image {
+  filter: url(#logoTintPrimary);
 }
 
 .header--transparent .logo__name,
 .header--transparent .logo__tagline {
   color: var(--color-text-inverse);
+}
+
+.header--transparent .nav__link {
+  color: var(--color-text-inverse);
+}
+
+.header--transparent .header__actions .btn--outline {
+  color: var(--color-text-inverse);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 /* Navigation */

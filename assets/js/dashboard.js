@@ -6,10 +6,15 @@ const StacklyDashboard = (() => {
   function initSidebar() {
     const toggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('dashboardSidebar');
+    const close = document.getElementById('sidebarClose');
     if (!toggle || !sidebar) return;
 
     toggle.addEventListener('click', () => {
       sidebar.classList.toggle('open');
+    });
+
+    close?.addEventListener('click', () => {
+      sidebar.classList.remove('open');
     });
   }
 

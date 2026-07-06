@@ -86,6 +86,7 @@ h6 { font-size: var(--fs-md); }
 .section-title {
   font-size: var(--fs-3xl);
   margin-bottom: var(--space-md);
+  color: inherit;
 }
 
 .section-desc {
@@ -183,16 +184,23 @@ h6 { font-size: var(--fs-md); }
 .page-hero .container {
   position: relative;
   z-index: 1;
+  text-align: center;
+}
+
+.page-hero .container > p {
+  margin-inline: auto;
 }
 
 .page-hero__title {
   font-size: var(--fs-3xl);
   margin-bottom: var(--space-md);
+  color: inherit;
 }
 
 .page-hero__breadcrumb {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-sm);
   font-size: var(--fs-sm);
   color: rgba(255, 255, 255, 0.7);

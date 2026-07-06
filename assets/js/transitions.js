@@ -21,10 +21,10 @@ const StacklyTransitions = (() => {
         // Show preloader
         preloader.classList.remove('hidden');
 
-        // Wait for 2 seconds then navigate
+        // Wait for the preloader fade to play then navigate
         setTimeout(() => {
           window.location.href = href;
-        }, 2000);
+        }, 500);
       });
     });
   }

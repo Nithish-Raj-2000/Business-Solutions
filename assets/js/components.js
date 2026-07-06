@@ -50,11 +50,8 @@ const StacklyComponents = (() => {
       <header class="header ${transparent}" id="header" role="navigation" aria-label="Main navigation">
         <div class="container header__inner">
           <a href="index.html" class="logo" aria-label="Stackly Business Solutions Home">
-            <div class="logo__icon"><i class="fas fa-layer-group"></i></div>
-            <div class="logo__text">
-              <span class="logo__name">Stackly</span>
-              <span class="logo__tagline">Business Solutions</span>
-            </div>
+            <img src="assets/images/logos/stackly-logo-white.webp" alt="Stackly" class="logo__image">
+            <span class="logo__tagline">Business Solutions</span>
           </a>
           <nav class="nav" aria-label="Primary">
             <ul class="nav__list">${navLinks}</ul>
@@ -87,16 +84,13 @@ const StacklyComponents = (() => {
             <div class="footer__grid">
               <div class="footer__brand">
                 <a href="index.html" class="logo">
-                  <div class="logo__icon"><i class="fas fa-layer-group"></i></div>
-                  <div class="logo__text">
-                    <span class="logo__name">Stackly</span>
-                    <span class="logo__tagline">Business Solutions</span>
-                  </div>
+                  <img src="assets/images/logos/stackly-logo-white.webp" alt="Stackly" class="logo__image">
+                  <span class="logo__tagline">Business Solutions</span>
                 </a>
                 <p class="footer__desc">Empowering Businesses Through Smart Digital Innovation. We deliver cutting-edge technology solutions that drive growth, efficiency, and competitive advantage.</p>
                 <div class="footer__social">
                   <a href="404.html" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                  <a href="404.html" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                  <a href="404.html" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
                   <a href="404.html" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   <a href="404.html" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                   <a href="404.html" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
@@ -194,6 +188,22 @@ const StacklyComponents = (() => {
     if (footerEl) footerEl.innerHTML = renderFooter();
     if (preloaderEl) preloaderEl.innerHTML = renderPreloader();
     if (backToTopEl) backToTopEl.innerHTML = renderBackToTop();
+    injectLogoTintFilter();
+  }
+
+  function injectLogoTintFilter() {
+    if (document.getElementById('logoTintDefs')) return;
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('id', 'logoTintDefs');
+    svg.setAttribute('width', '0');
+    svg.setAttribute('height', '0');
+    svg.style.position = 'absolute';
+    svg.innerHTML = `
+      <filter id="logoTintPrimary" color-interpolation-filters="sRGB">
+        <feFlood flood-color="#1a237e" result="flood"/>
+        <feComposite in="flood" in2="SourceAlpha" operator="in"/>
+      </filter>`;
+    document.body.appendChild(svg);
   }
 
   return { init, isDashboard, isAuth };
@@ -210,8 +220,9 @@ document.addEventListener('click', function (e) {
 
   const text = (el.textContent || '').trim();
   const hasDownloadIcon = el.querySelector && el.querySelector('.fa-download');
+  const ctaRedirectPattern = /\b(pay\s*now|learn\s*more|view\s*more|view\s*all|explore|view|read\s*more|read\s*article)\b/i;
 
-  if (/^pay\s*now$/i.test(text) || /download/i.test(text) || hasDownloadIcon) {
+  if (ctaRedirectPattern.test(text) || /download/i.test(text) || hasDownloadIcon) {
     e.preventDefault();
     window.location.href = '404.html';
   }
