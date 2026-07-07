@@ -15,6 +15,11 @@
     display: flex;
   }
 
+  .header__actions {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
   .hero__content {
     grid-template-columns: 1fr;
     text-align: center;
@@ -110,6 +115,17 @@
     display: flex;
   }
 
+  .dashboard-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dashboard-table th,
+  .dashboard-table td {
+    white-space: nowrap;
+  }
+
   .process-grid::before {
     display: none;
   }
@@ -144,6 +160,13 @@
   .footer__grid,
   .dashboard-stats {
     grid-template-columns: 1fr;
+  }
+
+  .dashboard-stat-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-md);
   }
 
   .pricing-card--featured {
@@ -263,7 +286,9 @@
   }
 
   .dashboard-topbar__email {
-    max-width: 34vw;
+    max-width: 52vw;
+    font-size: 0.72rem;
+    padding: 0.5rem 0.75rem;
   }
 
   .dashboard-content {

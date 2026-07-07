@@ -325,13 +325,13 @@
 /* Mobile Drawer */
 .mobile-drawer {
   position: fixed;
-  top: 0;
+  top: calc(var(--header-height) + var(--topbar-height));
   right: -100%;
-  width: min(360px, 90vw);
-  height: 100vh;
+  width: min(300px, 80vw);
+  height: calc(100vh - var(--header-height) - var(--topbar-height));
   background: var(--color-bg);
   z-index: var(--z-overlay);
-  padding: calc(var(--header-height) + var(--topbar-height) + var(--space-xl)) var(--space-xl) var(--space-xl);
+  padding: var(--space-xl);
   overflow-y: auto;
   transition: right var(--transition-slow);
   box-shadow: var(--shadow-xl);
@@ -344,6 +344,7 @@
 .mobile-drawer__overlay {
   position: fixed;
   inset: 0;
+  top: calc(var(--header-height) + var(--topbar-height));
   background: rgba(15, 23, 42, 0.6);
   z-index: calc(var(--z-overlay) - 1);
   opacity: 0;

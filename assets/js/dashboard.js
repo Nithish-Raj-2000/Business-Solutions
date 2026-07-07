@@ -47,6 +47,7 @@ const StacklyDashboard = (() => {
         e.preventDefault();
         const panelId = link.getAttribute('data-panel');
         activatePanel(panelId, true);
+        document.getElementById('dashboardSidebar')?.classList.remove('open');
       });
     });
 

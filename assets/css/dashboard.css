@@ -19,6 +19,10 @@
 }
 
 .dashboard-sidebar__header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--color-bg-dark);
   padding: var(--space-xl);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
@@ -219,6 +223,10 @@
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-xl);
   margin-bottom: var(--space-2xl);
+}
+
+.dashboard-stats--3 {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .dashboard-stat-card {
